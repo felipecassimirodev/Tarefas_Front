@@ -16,20 +16,14 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="http://localhost:4200/tarefas/cadastrar">Cadastrar</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
+            <li ngbDropdown class="nav-item dropdown">
+              <a ngbDropdownToggle class="nav-link dropdown-toggle"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >Dropdown</a>
+              <div ngbDropdownMenu class="dropdown-menu dropdown-menu-dark">
+                <a ngbDropdownItem  class="dropdown-item" href="#">Another action</a>
+                <a ngbDropdownItem class="dropdown-item" href="#">Something else here</a>
+              </div>
             </li>
           </ul>
           <form class="d-flex" role="search">

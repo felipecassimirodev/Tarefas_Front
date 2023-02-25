@@ -1,1 +1,51 @@
-<p>tarefa-cadastro works!</p>
+
+<div class="card" style="width: 60rem; height: 25rem; ">
+    <div class="card-header">
+      {{pageTitle}}
+    </div>
+    <div class="card-body">
+        
+         <form novalidate (ngSubmit)=salvar() [formGroup]="tarefaForm" >
+             <div class="form-group row">
+                 <label class="col-md-2 col-form-label" for="nome">Nome</label>
+            </div>  
+            <div class="col-md-7">
+                <input class="form-control" type="text" id="nome" name="nome" placeholder="Informe o nome da tarefa." formControlName="nome">
+            </div>
+
+             <div class="form-group row">
+                 <label class="col-md-2 col-form-label" for="detalhes">Detalhes</label>
+            </div>  
+            <div class="col-md-7">
+                <textarea class="form-control" name="detalhes" id="detalhes"  rows="3" placeholder="Informe os detalhes da tarefa." formControlName="detalhes">                   
+                </textarea>
+            </div>
+    
+            <div class="form-group row mb-2">
+                <div class="offset-md-2 col-md-6">   
+                    <button class="btn btn-primary y me-md-2" style=" margin:4rem 2px;" 
+                            type="submit" 
+                            [title]="tarefaForm.valid ? 'salvar' : 'Desabilitado até que os dados estejam validos'"
+                            [disabled]="!tarefaForm.valid">
+                        Salvar
+                    </button>
+                    <button class="btn btn-outline-secondary y me-md-2" type="button" style=" margin:4rem 2px;"
+                            title="Cancelar" [routerLink]="['/tarefas']">
+                        Cancelar
+                    </button>
+                    <button class="btn btn-outline-danger" *ngIf="pageTitle != 'Adicionar Tarefa'" type="button">
+                        Excluir
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+  </div>
+
+<div class="alert alert-danger" *ngIf="errorMessage">   
+    {{errorMessage}}
+</div>
+

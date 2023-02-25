@@ -9,6 +9,7 @@
       <thead>
         <tr>
              <th>Nome</th>
+             <th>Titulo</th>
              <th>Açõees</th>
         </tr>
       </thead>
@@ -18,7 +19,10 @@
             {{tarefa.nome}}
           </td>
           <td>
-            <button class="btn btn-primary btn-sm">
+            {{tarefa.titulo}}
+          </td>
+          <td>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/tarefas',tarefa.id, 'editar']">
                <i class="fa fa-edit"></i>
             </button>
           </td>
@@ -26,7 +30,7 @@
       </tbody>
     </table>
   </div>
-
+  
 </div>
 
 

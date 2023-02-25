@@ -19,7 +19,6 @@ export class TarefaListaComponent implements OnInit {
   }
 
   obterTarefas(){
-    debugger
     this.tarefasServices.obterTarefas().subscribe(
       tarefas => {
         this.tarefas = tarefas;
