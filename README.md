@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Comandos para instalar o PrimeNG no arquivo de inicialização
+
+
+    npm install primeng --save --legacy-peer-deps
+    npm install primeicons --save --legacy-peer-deps

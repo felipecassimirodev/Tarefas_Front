@@ -1,5 +1,5 @@
 
-<div class="card" style="width: 60rem; height: 25rem; ">
+<div class="card" style="width: 60rem; height: 30rem;">
     <div class="card-header">
       {{pageTitle}}
     </div>
@@ -12,13 +12,21 @@
             <div class="col-md-7">
                 <input class="form-control" type="text" id="nome" name="nome" placeholder="Informe o nome da tarefa." formControlName="nome">
             </div>
+             <div class="form-group row">
+                 <label class="col-md-2 col-form-label" for="titulo">Titulo</label>
+            </div>  
+            <div class="col-md-7">
+                <input class="form-control" type="text" id="titulo" name="titulo" placeholder="Informe o titulo da tarefa." formControlName="titulo">
+            </div>
 
              <div class="form-group row">
                  <label class="col-md-2 col-form-label" for="detalhes">Detalhes</label>
             </div>  
             <div class="col-md-7">
+                <div class="col-md-7">
                 <textarea class="form-control" name="detalhes" id="detalhes"  rows="3" placeholder="Informe os detalhes da tarefa." formControlName="detalhes">                   
                 </textarea>
+            </div>
             </div>
     
             <div class="form-group row mb-2">
@@ -40,9 +48,7 @@
             </div>
 
         </form>
-
     </div>
-
   </div>
 
 <div class="alert alert-danger" *ngIf="errorMessage">   

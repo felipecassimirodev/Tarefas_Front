@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { Tarefa } from '../../models/tarefa';
 import { TarefasService } from '../../services/tarefas.service';
 
+import { PrimeNGConfig } from 'primeng/api';
+
 @Component({
   selector: 'app-tarefa-cadastro',
   templateUrl: './tarefa-cadastro.component.html',
@@ -18,12 +20,13 @@ export class TarefaCadastroComponent implements OnInit, OnDestroy {
   tarefaForm!: FormGroup;
   validationManager: { [Key: string]: {[Key: string]: string } };
   private subscription!: Subscription;
-
+  text2: string | undefined;
 
   constructor( private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private tarefasServices : TarefasService
+    private tarefasServices : TarefasService,
+    private primengConfig: PrimeNGConfig
     ) { 
 
       this.validationManager = {
@@ -32,9 +35,13 @@ export class TarefaCadastroComponent implements OnInit, OnDestroy {
           minLength: 'Nome deve ter no minimo 3 caracteres.',
           maxLength: 'Nome deve execeder 50 caracteres.',
         },
+        titulo:{
+          minLength: 'titulo deve ter no minimo 3 caracteres.',
+          maxLength: 'titulo deve execeder 100 caracteres.',
+        },
         detalhes:{
-          minLength: 'Nome deve ter no minimo 3 caracteres.',
-          maxLength: 'Nome deve execeder 100 caracteres.',
+          minLength: 'detalhes deve ter no minimo 3 caracteres.',
+          maxLength: 'detalhes deve execeder 100 caracteres.',
         }
       };
   }
@@ -43,6 +50,7 @@ export class TarefaCadastroComponent implements OnInit, OnDestroy {
     this.formMode = 'new';
     this.tarefaForm = this.fb.group({
       nome:['',[Validators.required, Validators.minLength(3),Validators.maxLength(50)]],
+      titulo:['',[ Validators.minLength(3),Validators.maxLength(50)]],
       detalhes:['',[ Validators.minLength(3),Validators.maxLength(1000)]],
     });
 
@@ -51,13 +59,15 @@ export class TarefaCadastroComponent implements OnInit, OnDestroy {
         const id = params.get('id');
 
         if (id == null || id == ''){
-          const tarefa: Tarefa = {id: "", nome: "", detalhes: ""};
+          const tarefa: Tarefa = {id: "", nome: "", detalhes: "", titulo: ""};
           this.exibirtarefa(tarefa);
         }
         else{
           this.obterTarefa(id);
         }
       });
+
+    this.primengConfig.ripple = true;  
   }
 
   ngOnDestroy(): void {
@@ -81,7 +91,8 @@ exibirtarefa(tarefa: Tarefa): void {
 
     this.tarefaForm.patchValue({
       nome: this.tarefa.nome,
-      detalhes: this.tarefa.detalhes
+      detalhes: this.tarefa.detalhes,
+      titulo: this.tarefa.titulo
     });
 }
 
@@ -110,7 +121,6 @@ excluirTarefa(): void {
 salvar(): void {
   if(this.tarefaForm.valid) {
     if(this.tarefaForm.dirty) {
-
         const t = { ...this.tarefa, ...this.tarefaForm.value };
 
         if(t.id === ''){
